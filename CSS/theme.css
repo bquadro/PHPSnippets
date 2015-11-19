@@ -1,0 +1,3 @@
+ol { margin:0; padding:0 0 0 40px; list-style:none; counter-reset:list1;}
+ol li { position:relative; margin:0; padding:0 0 24px 48px; list-style:none; counter-increment:list1; }
+ol li:before { content:counter(list1); position:absolute; left:0; top:5px; width:15px; height:15px; line-height:15px; color:#fff; text-align:center; font-size:18px; font-weight:bold; border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%; }
