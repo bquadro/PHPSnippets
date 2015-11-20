@@ -1,3 +1,28 @@
-ol { margin:0; padding:0 0 0 40px; list-style:none; counter-reset:list1;}
-ol li { position:relative; margin:0; padding:0 0 24px 48px; list-style:none; counter-increment:list1; }
-ol li:before { content:counter(list1); position:absolute; left:0; top:5px; width:15px; height:15px; line-height:15px; color:#fff; text-align:center; font-size:18px; font-weight:bold; border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%; }
+ul { margin: 1.5em 0 1.5em 0; padding:0 0 0 24px; list-style:none;  }
+ul li { position:relative; margin:0; margin: 1em 0 0px 0em; list-style:none;}
+
+ul.list-balls li{  list-style-image: url(../image/lineatus-li-ball.png);  }
+ul.list li{  list-style-image: url(../image/lineatus-list.png);  }
+
+ol { margin:1em 0 1.5em 0; padding:0 0 0 0px; list-style:none; counter-reset:list1;}
+ol li { position:relative; margin:0; padding: 1em 0 0px 2.5em; list-style:none; counter-increment:list1; }
+ol li:before { content: counter(list1); position:absolute; left:0; top: 1.2em; width:1.5em; height:1.5em; line-height:1.6em; color:#fff; text-align:center; font-size:.9em; background: #62adfa; font-weight:bold; border-radius: .2em; -webkit-border-radius: .2em; -moz-border-radius: .2em; }
+ol[type="A"] li:before { content: counter(list1, upper-alpha);}
+ol[type="I"] li:before { content: counter(list1, upper-roman);}
+
+
+/*
+  
+  JS-код 
+  
+  //Фича для списка, начинающегося не с первой позиции
+  $(function() {
+    $( "ol" ).each(function() {
+      var val=1;
+      if ($(this).attr("start")) val = $(this).attr("start");
+      val = val - 1;
+      $(this).css('counter-reset', "list1 " +val);
+    });
+  }); 
+  
+*/
