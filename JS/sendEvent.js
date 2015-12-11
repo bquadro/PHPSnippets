@@ -43,6 +43,8 @@ Kolich.Selector.getSelected = function(){
   }else if(document.selection){
     t = document.selection.createRange().text;
   }
+  t = t.toString().replace(/^\s+/,'');
+  t = t.replace(/\s+$/,'');
   return t;
 }
 
