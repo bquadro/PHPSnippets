@@ -5,6 +5,16 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^ http%{ENV:protossl}://%1%{REQUEST_URI} [L,R=301]
 
+#перекидываем на страницу со слешем на конце
+  RewriteCond %{REQUEST_URI} !\?
+  RewriteCond %{REQUEST_URI} !\&
+  RewriteCond %{REQUEST_URI} !\=
+  RewriteCond %{REQUEST_URI} !\.
+  RewriteCond %{REQUEST_URI} !\/$
+  RewriteRule ^(.*[^\/])$ /$1/ [R=301,L]
+  
 #перекидываем на страницу без слеша на конце
 #RewriteCond %{REQUEST_URI} !^\/exclude_path\/
 RewriteRule ^(.*)\/$ /$1 [R=301,L]
+
+

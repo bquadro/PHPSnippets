@@ -1,0 +1,94 @@
+# Публикация в соцсетях
+#
+#
+
+<a class="share_button fb" 
+  href="#fb_share" 
+  data-url=«[URL]» 
+  data-title="<?=check_plain( $node_title);?>" 
+  data-img="[IMG]" 
+  data-caption=""
+><img class="social-icon" src="[ICON]" title="" alt=""></a>
+
+<a class="share_button tw" rel="nofollow"
+    href="http://twitter.com/share"
+    onclick="popUp=window.open(
+        'http://twitter.com/intent/tweet?text=[TITLE] [URL]',
+        'popupwindow',
+        'scrollbars=yes,width=500,height=300');
+    popUp.focus();
+    return false">
+    <img class="social-icon" src="[ICON]" title="" alt="">
+</a>
+
+<span class="share_button vk"><script>document.write(VK.Share.button({url: '[URL]', image: ‘[IMG]’, title: '[TITLE]'}, {type: 'custom', text: '<img class="social-icon" src="[ICON]" title="" alt="">'})); </script></span>
+
+<a class="share_button in" rel="nofollow"
+    href="http://www.linkedin.com/"
+    onclick="popUp=window.open(
+        'http://www.linkedin.com/shareArticle?url=[URL]',
+        'popupwindow',
+        'scrollbars=yes,width=500,height=300');
+    popUp.focus();
+    return false"><img class=«social-icon» src=«[ICON]» title="" alt=""></a>
+
+
+JS FACEBOOK
+  jQuery('.share_button.fb').click(function(e){
+    e.preventDefault();
+    var el = jQuery(this);
+    FB.ui(
+      {
+      method: 'feed',
+      name: el.attr('data-title'),
+      link: el.attr('data-url'),
+      picture: el.attr('data-img'),
+      caption: el.attr('data-caption'),
+      description: el.attr('data-caption'),
+      message: ''
+    });
+  });
+
+
+JS FACEBOOK <head> script
+  <script type="text/javascript" src="http://vk.com/js/api/share.js?90" charset="windows-1251"></script>
+
+
+JS FACEBOOK start <body> script
+
+  <!-- FACEBOOK SDK-->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '186932908346817',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+JS TWITTER start <body> script
+
+  <!-- TWITTER widgets.js-->
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+  return t;
+}(document, "script", "twitter-wjs"));</script>
