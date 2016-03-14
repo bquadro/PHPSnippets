@@ -12,9 +12,26 @@ RewriteRule ^ http%{ENV:protossl}://%1%{REQUEST_URI} [L,R=301]
   RewriteCond %{REQUEST_URI} !\.
   RewriteCond %{REQUEST_URI} !\/$
   RewriteRule ^(.*[^\/])$ /$1/ [R=301,L]
-  
+
+# Remove multiple slashes after domain
+RewriteCond %{HTTP_HOST} !=""
+RewriteCond %{THE_REQUEST} ^[A-Z]+\s//+(.*)\sHTTP/[0-9.]+$ [OR]
+RewriteCond %{THE_REQUEST} ^[A-Z]+\s(.*/)/+\sHTTP/[0-9.]+$
+RewriteRule .* http://%{HTTP_HOST}/%1 [R=301,L]
+
+# Remove multiple slashes anywhere in URL
+RewriteCond %{REQUEST_URI} ^(.*)//(.*)$
+RewriteRule . %1/%2 [R=301,L]
+
 #перекидываем на страницу без слеша на конце
-#RewriteCond %{REQUEST_URI} !^\/exclude_path\/
-RewriteRule ^(.*)\/$ /$1 [R=301,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^[\/]+$ [NC]
+RewriteRule ^(.+[^/])/$ http://%{HTTP_HOST}/$1 [R=301,L]
 
-
+#перекидываем внутренние страницы на .html 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/$
+RewriteCond %{REQUEST_URI} !\.html$ 
+RewriteRule ^(.+)$ http://%{HTTP_HOST}/$1.html [R=301,L]
