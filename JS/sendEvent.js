@@ -1,6 +1,6 @@
 function sendEvent(event, category, virtual) {
     var mname = 'yaCounter10865746';
-    var m = window[vname];
+    var m = window[mname];
     var c = typeof console !== "undefined";
 		if (event == "")
 				return;
