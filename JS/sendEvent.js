@@ -1,13 +1,15 @@
 function sendEvent(event, category, virtual) {
+    var mname = 'yaCounter10865746';
+    var m = window[vname];
     var c = typeof console !== "undefined";
 		if (event == "")
 				return;
 		if (typeof category == "undefined")
 				category = 'form';
-		if (typeof yaCounter965071 !== "undefined"){
-				yaCounter965071.reachGoal(event);
+		if (typeof m !== "undefined"){
+				m.reachGoal(event);
   		if (c)
-  			console.log("yaCounter965071.reachGoal('"+event+"');");				
+  			console.log(vname+".reachGoal('"+event+"');");				
 		}
 		if (typeof _gaq !== "undefined"){
 				_gaq.push(['_trackEvent', category, event]);

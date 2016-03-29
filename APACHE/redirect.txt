@@ -13,6 +13,10 @@ RewriteRule ^ http%{ENV:protossl}://%1%{REQUEST_URI} [L,R=301]
   RewriteCond %{REQUEST_URI} !\/$
   RewriteRule ^(.*[^\/])$ /$1/ [R=301,L]
 
+# Remove multiple slashes anywhere in URL
+RewriteCond %{REQUEST_URI} ^(.*)//(.*)$
+RewriteRule . %1/%2 [R=301,L]
+
 # Remove multiple slashes after domain
 RewriteCond %{HTTP_HOST} !=""
 RewriteCond %{THE_REQUEST} ^[A-Z]+\s//+(.*)\sHTTP/[0-9.]+$ [OR]
