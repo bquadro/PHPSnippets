@@ -9,7 +9,7 @@ function sendEvent(event, category, virtual) {
 		if (typeof m !== "undefined"){
 				m.reachGoal(event);
   		if (c)
-  			console.log(vname+".reachGoal('"+event+"');");				
+  			console.log(mname+".reachGoal('"+event+"');");				
 		}
 		if (typeof _gaq !== "undefined"){
 				_gaq.push(['_trackEvent', category, event]);
