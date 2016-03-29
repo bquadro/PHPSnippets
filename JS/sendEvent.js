@@ -10,12 +10,15 @@ function sendEvent(event, category, virtual) {
 				m.reachGoal(event);
   		if (c)
   			console.log(mname+".reachGoal('"+event+"');");				
+		} else {
+  		if (c)
+  			console.log("Счетчик "+mname+" не найден" );				
 		}
 		if (typeof _gaq !== "undefined"){
 				_gaq.push(['_trackEvent', category, event]);
   		if (c)
   				console.log("_gaq.push(['_trackEvent', '"+category+"', '"+event+"']);");				
-  	}
+  	}else
 		if (typeof ga !== "undefined"){
       if(typeof virtual !== "undefined"){ 
         ga('send', 'pageview', virtual) 
@@ -25,6 +28,9 @@ function sendEvent(event, category, virtual) {
 			ga('send', 'event', category, event); 
   		if (c)
   				console.log("ga('send', 'event', '"+category+"', '"+event+"');");
+		} else {
+  		if (c)
+  			console.log("Счетчик GOOGLE ANALYTICS не найден");				
 		}
 		return true;
 }
