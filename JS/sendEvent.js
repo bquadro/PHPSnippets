@@ -15,6 +15,11 @@ function sendEvent(event, category, virtual) {
   			console.log("Счетчик "+mname+" не найден" );				
 		}
 		if (typeof _gaq !== "undefined"){
+        if(typeof virtual !== "undefined"){ 
+          _gaq.push(['_trackPageview', virtual]);
+      		if (c)
+      				console.log("_gaq.push(['_trackPageview', '"+virtual+"']);");
+        } 
 				_gaq.push(['_trackEvent', category, event]);
   		if (c)
   				console.log("_gaq.push(['_trackEvent', '"+category+"', '"+event+"']);");				
@@ -31,6 +36,11 @@ function sendEvent(event, category, virtual) {
 		} else 
 		if (typeof pageTracker !== "undefined"){
 				pageTracker._trackEvent(category, event);
+        if(typeof virtual !== "undefined"){
+          pageTracker._trackPageview(virtual);
+      		if (c)
+      				console.log("pageTracker._trackPageview('"+virtual+"');");
+        } 
   		if (c)
   				console.log("pageTracker._trackEvent('"+category+"', '"+event+"');");				
   	} else {
@@ -72,3 +82,13 @@ Kolich.Selector.mouseup = function(){
 }
 
 $(document).bind("mouseup", Kolich.Selector.mouseup);
+
+//наведение на элемент
+$(document).mouseover(function(event){
+  var x = event.clientX, y = event.clientY,
+    elementMouseIsOver = document.elementFromPoint(x, y);
+    if(jQuery(elementMouseIsOver).hasClass('phone')){
+      sendEvent('phone', 'phone-cursor');
+      //console.log(jQuery(elementMouseIsOver));
+    }
+});
